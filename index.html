@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta AULIA-multiselectable="" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AULIA IT Support</title>
+<meta AULIA content="Portofolio IT Support: troubleshooting hardware, jaringan, dan helpdesk.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--surface:#fff;--ink:#14212b;--muted:#53636f;--line:#d5dde5;--brand:#0b6b6f;--brand-ink:#fff;--signal:#e8a317;--ok:#1d7a46;--bad:#b3362c;
+--h:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--b:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e161d;--surface:#16212a;--ink:#e8eef3;--muted:#9aabb7;--line:#27363f;--brand:#3cc3c8;--brand-ink:#06282a;--signal:#f2b73c;--ok:#4cc38a;--bad:#ef7b70}}
+:root[data-theme="dark"]{--bg:#0e161d;--surface:#16212a;--ink:#e8eef3;--muted:#9aabb7;--line:#27363f;--brand:#3cc3c8;--brand-ink:#06282a;--signal:#f2b73c;--ok:#4cc38a;--bad:#ef7b70}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--b)}
+h1,h2,h3{font-family:var(--h);line-height:1.12;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;margin-bottom:8px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 32px}
+.btn{display:inline-block;border:2px solid var(--brand);background:var(--brand);color:var(--brand-ink);padding:12px 22px;border-radius:10px;font:600 1rem var(--b);text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+/* nav */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:800 1.15rem var(--h);text-decoration:none}
+.logo span{color:var(--brand)}
+.links{display:flex;gap:6px;align-items:center}
+.links a{text-decoration:none;padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:500}
+.links a:hover,.links a.on{color:var(--ink);background:var(--surface)}
+.ib{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:1.1rem}
+#menu{display:none}
+@media(max-width:760px){#menu{display:block}.links{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 20px;display:none}.links.open{display:flex}}
+/* hero */
+.hero{padding-top:56px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.status{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);padding:6px 14px;border-radius:99px;font-size:.9rem;margin-bottom:18px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:p 2s infinite}
+@keyframes p{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(2.3rem,6vw,3.8rem);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:52ch;margin:18px 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.counters{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.counters b{display:block;font:800 1.9rem var(--h);color:var(--brand)}
+.counters small{color:var(--muted)}
+/* troubleshooter */
+.ts{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.ts-h{padding:14px 18px;border-bottom:1px solid var(--line);font:700 1rem var(--h);display:flex;justify-content:space-between}
+.ts-h small{font:400 .85rem var(--b);color:var(--muted)}
+.probs{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px 6px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:7px 13px;border-radius:99px;cursor:pointer;font:500 .9rem var(--b)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.steps{list-style:none;margin:0;padding:12px 18px 18px;min-height:230px}
+.steps li{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.steps li:last-child{border:0}
+.box{flex:none;width:22px;height:22px;border:2px solid var(--line);border-radius:6px;display:grid;place-items:center;font-size:.8rem;margin-top:2px}
+.steps li.done .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.steps li.done span{color:var(--muted);text-decoration:line-through}
+.res{padding:12px 18px;background:var(--bg);font-weight:600;min-height:46px;color:var(--ok)}
+/* skills */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.skill h3{font-size:1.05rem;margin-bottom:10px}
+.bar{height:8px;background:var(--bg);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--brand);border-radius:9px;transition:width 1s ease}
+.skill small{color:var(--muted)}
+/* timeline */
+.tl{border-left:3px solid var(--line);margin-left:6px}
+.job{position:relative;padding:0 0 30px 26px}
+.job::before{content:"";position:absolute;left:-9px;top:6px;width:15px;height:15px;border-radius:50%;background:var(--brand);border:3px solid var(--bg)}
+.job time{color:var(--muted);font-size:.9rem}
+.job h3{font-size:1.2rem;margin:2px 0 6px}
+.job ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+/* projects */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:12px;padding:20px}
+.tag{font-size:.8rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent);padding:3px 10px;border-radius:99px}
+.card h3{margin:12px 0 8px;font-size:1.15rem}
+.card p{margin:0 0 10px;color:var(--muted)}
+.card strong{color:var(--ink)}
+/* certs */
+.certs{display:flex;flex-wrap:wrap;gap:12px}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.cert small{display:block;color:var(--muted)}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:36px}
+@media(max-width:800px){.contact{grid-template-columns:1fr}}
+form{display:grid;gap:14px}
+label{font-weight:600;font-size:.92rem;display:grid;gap:6px}
+input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
+.err{color:var(--bad);font-weight:500;font-size:.85rem;min-height:1em}
+.info a{display:block;padding:6px 0}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center;font-size:.9rem}
+.rv{opacity:0;transform:translateY(14px);transition:.6s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#top">AULIA<span><div class="suport"></div></span></a>
+  <nav class="links" id="links" aria-label="Navigasi utama">
+    <a href="#skill">Keahlian</a><a href="#pengalaman">Pengalaman</a><a href="#proyek">Proyek</a><a href="#kontak">Kontak</a>
+  </nav>
+  <div style="display:flex;gap:8px">
+    <button class="ib" id="theme" aria-label="Ganti tema">◐</button>
+    <button class="ib" id="menu" aria-label="Buka menu" aria-expanded="false">☰</button>
+  </div>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="status"><span class="dot"></span>Terbuka untuk posisi IT Support</div>
+    <h1>Nama Anda,<br>IT Support yang menyelesaikan masalah sampai tuntas.</h1>
+    <p>Saya membantu pengguna kembali bekerja dengan cepat: perbaikan perangkat, jaringan kantor, akun dan email, serta dokumentasi yang rapi supaya masalah tidak terulang.</p>
+    <div class="cta"><a class="btn" href="#kontak">Hubungi saya</a><a class="btn ghost" href="#proyek">Lihat kasus yang diselesaikan</a></div>
+    <div class="counters">
+      <div><b data-n="500">0</b><small>tiket ditangani</small></div>
+      <div><b data-n="95">0</b><small>% selesai di kontak pertama</small></div>
+      <div><b data-n="3">0</b><small>tahun pengalaman</small></div>
+    </div>
+  </div>
+  <div class="ts" aria-labelledby="tsT">
+    <div class="ts-h"><span id="tsT">Coba cara saya troubleshooting</span><small id="prog">0/0</small></div>
+    <div class="probs" id="probs" role="group" aria-label="Pilih masalah"></div>
+    <ul class="steps" id="steps"></ul>
+    <div class="res" id="res" aria-live="polite">Pilih masalah di atas, lalu centang tiap langkah.</div>
+  </div>
+</div></section>
+
+<section id="skill"><div class="wrap">
+  <h2>Keahlian</h2>
+  <p class="lead">Pilih kategori untuk melihat tingkat kemampuan saya.</p>
+  <div class="tabs" id="tabs" role="group" aria-label="Kategori keahlian"></div>
+  <div class="grid" id="skills"></div>
+</div></section>
+
+<section id="pengalaman"><div class="wrap">
+  <h2>Pengalaman</h2>
+  <p class="lead">Ganti isi di bawah dengan riwayat kerja Anda yang sebenarnya.</p>
+  <div class="tl">
+    <div class="job rv"><time>2024 – sekarang</time><h3>IT Support Staff · PT Contoh Maju</h3>
+      <ul><li>Menangani rata-rata 25 tiket per hari lewat sistem helpdesk.</li><li>Mengelola akun pengguna di Active Directory dan Microsoft 365.</li><li>Menyusun panduan mandiri sehingga tiket berulang turun 30%.</li></ul></div>
+    <div class="job rv"><time>2022 – 2024</time><h3>Teknisi Komputer & Jaringan · CV Solusi Digital</h3>
+      <ul><li>Instalasi dan perawatan 80+ PC, printer, dan perangkat jaringan.</li><li>Memasang dan mengonfigurasi router, switch, dan access point.</li></ul></div>
+    <div class="job rv"><time>2018 – 2022</time><h3>S1 Teknik Informatika · Universitas Contoh</h3>
+      <ul><li>Fokus pada jaringan komputer dan sistem operasi.</li></ul></div>
+  </div>
+</div></section>
+
+<section id="proyek"><div class="wrap">
+  <h2>Kasus yang sudah diselesaikan</h2>
+  <p class="lead">Setiap proyek ditulis seperti tiket: masalah, tindakan, hasil.</p>
+  <div class="cards">
+    <article class="card rv"><span class="tag">Selesai</span><h3>Wi-Fi kantor sering putus</h3>
+      <p><strong>Masalah:</strong> 40 pengguna terputus setiap siang.</p><p><strong>Tindakan:</strong> Memetakan sinyal, mengganti channel yang bentrok, menambah 2 access point.</p><p><strong>Hasil:</strong> Keluhan turun dari 15 menjadi 1 per minggu.</p></article>
+    <article class="card rv"><span class="tag">Selesai</span><h3>Migrasi email ke Microsoft 365</h3>
+      <p><strong>Masalah:</strong> Email lama sering penuh dan lambat.</p><p><strong>Tindakan:</strong> Memindahkan 60 kotak surat di akhir pekan dan melatih pengguna.</p><p><strong>Hasil:</strong> Nol email hilang, tanpa downtime di hari kerja.</p></article>
+    <article class="card rv"><span class="tag">Selesai</span><h3>Inventaris aset dan backup</h3>
+      <p><strong>Masalah:</strong> Data perangkat tidak tercatat, backup tidak teratur.</p><p><strong>Tindakan:</strong> Membuat daftar aset di spreadsheet dan jadwal backup otomatis.</p><p><strong>Hasil:</strong> Pemulihan data kini selesai di bawah 1 jam.</p></article>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Sertifikasi</h2><p class="lead">Contoh, ganti dengan sertifikat Anda.</p>
+  <div class="certs">
+    <div class="cert"><b>Google IT Support</b><small>Professional Certificate · 2023</small></div>
+    <div class="cert"><b>CompTIA A+</b><small>2023</small></div>
+    <div class="cert"><b>Cisco CCNA</b><small>Dalam proses</small></div>
+  </div>
+</div></section>
+
+<section id="kontak"><div class="wrap contact">
+  <div>
+    <h2>Mari bicara</h2>
+    <p class="lead">Saya biasanya membalas dalam 24 jam.</p>
+    <div class="info">
+      <a href="mailto:email@contoh.com">email@aulia.com</a>
+      <a href="https://wa.me/6281234567890">WhatsApp: 0813-1433-9288</a>
+      <a href="https://linkedin.com/in/username">linkedin.com/in/username</a>
+      <span>Jakarta, Indonesia</span>
+    </div>
+  </div>
+  <form id="form" novalidate>
+    <label>Nama<input name="n" autocomplete="name"><span class="err"></span></label>
+    <label>Email<input name="e" type="email" autocomplete="email"><span class="err"></span></label>
+    <label>Pesan<textarea name="m" rows="4"></textarea><span class="err"></span></label>
+    <button class="btn" type="submit">Kirim pesan</button>
+    <div id="ok" class="err" style="color:var(--ok)" aria-live="polite"></div>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap">© <span id="yr"></span> Nama Anda. Dibuat dengan HTML, CSS, dan JavaScript.</div></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+$('#yr').textContent=new Date().getFullYear();
+/* tema */
+const root=document.documentElement;
+$('#theme').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;root.dataset.theme=dark?'light':'dark'};
+/* menu */
+$('#menu').onclick=e=>{const o=$('#links').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
+$$('#links a').forEach(a=>a.onclick=()=>$('#links').classList.remove('open'));
+/* troubleshooter */
+const P={
+ 'Wi-Fi tidak terhubung':['Pastikan Wi-Fi laptop aktif (mode pesawat mati)','Cek apakah perangkat lain bisa terhubung','Lupakan jaringan, lalu sambungkan ulang','Restart router dan tunggu 2 menit','Jalankan ipconfig /release lalu /renew'],
+ 'Printer tidak mencetak':['Cek kabel, daya, dan kertas','Buka antrean cetak dan hapus dokumen macet','Pastikan printer default sudah benar','Restart layanan Print Spooler','Instal ulang driver dari situs resmi'],
+ 'Laptop lambat':['Buka Task Manager dan lihat proses terberat','Nonaktifkan program startup yang tidak perlu','Cek sisa ruang disk, minimal 15% kosong','Jalankan pemindaian antivirus','Pertimbangkan upgrade RAM atau SSD'],
+ 'Lupa password':['Verifikasi identitas pengguna','Reset password lewat konsol admin','Beri password sementara dan wajibkan ganti','Aktifkan verifikasi dua langkah','Catat tiket dan tutup']};
+let cur=null;
+const probs=$('#probs');
+Object.keys(P).forEach(k=>{const b=document.createElement('button');b.className='chip';b.textContent=k;b.setAttribute('aria-pressed','false');b.onclick=()=>pick(k);probs.append(b)});
+function pick(k){cur=k;$$('.chip').forEach(c=>c.setAttribute('aria-pressed',c.textContent===k));
+ $('#steps').innerHTML=P[k].map(t=>`<li tabindex="0" role="checkbox" aria-checked="false"><span class="box"></span><span>${t}</span></li>`).join('');
+ $$('#steps li').forEach(li=>{const f=()=>{li.classList.toggle('done');li.setAttribute('aria-checked',li.classList.contains('done'));li.firstChild.textContent=li.classList.contains('done')?'✓':'';upd()};li.onclick=f;li.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();f()}}});upd()}
+function upd(){const all=$$('#steps li'),d=$$('#steps li.done').length;$('#prog').textContent=d+'/'+all.length;
+ $('#res').textContent=d===all.length&&all.length?'Masalah teratasi dan terdokumentasi.':'Lanjutkan langkah berikutnya.'}
+/* skills */
+const S={Hardware:[['Perakitan & perbaikan PC/laptop',90],['Printer & periferal',85],['Upgrade RAM/SSD',80]],
+ Jaringan:[['TCP/IP, DNS, DHCP',80],['Router, switch, access point',75],['VPN & firewall dasar',60]],
+ Software:[['Windows 10/11 & Linux dasar',90],['Microsoft 365 & Active Directory',80],['Remote desktop & AnyDesk',90]],
+ Helpdesk:[['Sistem tiket (Jira, Freshdesk)',85],['Dokumentasi & panduan pengguna',85],['Komunikasi dengan pengguna non-teknis',90]]};
+const tabs=$('#tabs');
+Object.keys(S).forEach((k,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=k;b.setAttribute('aria-pressed',i==0);b.onclick=()=>show(k);tabs.append(b)});
+function show(k){$$('#tabs .chip').forEach(c=>c.setAttribute('aria-pressed',c.textContent===k));
+ $('#skills').innerHTML=S[k].map(([n,v])=>`<div class="skill"><h3>${n}</h3><div class="bar" role="img" aria-label="${v} persen"><i data-w="${v}"></i></div><small>${v}%</small></div>`).join('');
+ requestAnimationFrame(()=>requestAnimationFrame(()=>$$('.bar i').forEach(i=>i.style.width=i.dataset.w+'%')))}
+show('Hardware');
+/* counter + reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+$$('[data-n]').forEach(el=>{const n=+el.dataset.n;let c=0;const t=setInterval(()=>{c+=Math.ceil(n/40);if(c>=n){c=n;clearInterval(t)}el.textContent=c+(n>=500?'+':'')},30)});
+/* nav aktif */
+const secs=$$('main section[id]');
+addEventListener('scroll',()=>{let id='';secs.forEach(s=>{if(scrollY>=s.offsetTop-120)id=s.id});$$('#links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))},{passive:true});
+/* form */
+$('#form').onsubmit=e=>{e.preventDefault();const f=e.target,v=[f.n.value.trim(),f.e.value.trim(),f.m.value.trim()],er=$$('#form .err');let ok=true;
+ const msg=[v[0]?'':'AULIA.',/^\S+@\S+\.\S+$/.test(v[1])?'':'Masukkan email yang valid.',v[2].length>=10?'':'Tulis pesan minimal 10 karakter.'];
+ msg.forEach((m,i)=>{er[i].textContent=m;if(m)ok=false});
+ if(!ok)return;
+ location.href=`mailto:email@contoh.com?subject=${encodeURIComponent('Pesan dari '+v[0])}&body=${encodeURIComponent(v[2]+'\n\n'+v[1])}`;
+ $('#ok').textContent='Aplikasi email Anda akan terbuka untuk mengirim pesan.';f.reset()};
+</script>
+</body>
+</html>
